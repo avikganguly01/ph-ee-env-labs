@@ -9,7 +9,7 @@ ph-ee-engine:
     kibana:
       enabled: false
 
-  zeebe-operate:
+  zeebe-operate: 
     enabled: false
 
   elasticsearch:
@@ -30,16 +30,19 @@ ph-ee-engine:
 
   ph_ee_connector_channel:
     SPRING_PROFILES_ACTIVE: "bb"
-    hostname: "barebone-connector-channel.mifos.io"
+    hostname: "channel.ibank.com"
 
   ph_ee_operations_app:
     SPRING_PROFILES_ACTIVE: "bb"
-    hostname: "barebone-operations.mifos.io"
+    hostname: "ops.ibank.com"
 
   ph_ee_operations:
     SPRING_PROFILES_ACTIVE: "bb"
-    hostname: "barebone-operations.mifos.io"
-    webhost: "barebone-operations-ui.mifos.io"
+    hostname: "ops.ibank.com"
+    webhost: "ops-ui.ibank.com"
+
+  ph_ee_connector_gsma:
+    SPRING_PROFILES_ACTIVE: "bb"
 
   ph_ee_identity:
     hostname: "barebone-identity.mifos.io"
