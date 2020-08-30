@@ -22,7 +22,6 @@ ph-ee-engine:
           memory: "512M"
       volumeClaimTemplate:
         accessModes: [ "ReadWriteOnce" ]
-        storageClassName: "standard"
         resources:
           requests:
             storage: 10Gi
