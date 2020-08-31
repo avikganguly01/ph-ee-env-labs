@@ -10,3 +10,8 @@ dependencies:
 - name: ph-ee-engine
   repository: http://fynarfin.io/images/
   version: 1.0.0-SNAPSHOT
+- name: ingress-nginx
+  repository: https://kubernetes.github.io/ingress-nginx
+  version: 2.13.0
+  alias: ngx
+  
