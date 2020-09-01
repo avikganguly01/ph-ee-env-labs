@@ -1,4 +1,4 @@
-USE `tn03`;
+USE `ibank`;
 
 -- loan product
 SET @last_product_id = 1;
@@ -7,7 +7,7 @@ SELECT COALESCE(max(external_id), 1) INTO @last_ext_id FROM m_product_loan;
 
 
 INSERT INTO `m_product_loan` VALUES
-(@last_product_id, 'TZS', 2, 1, 1,
+(@last_product_id, 'USD', 2, 1, 1,
  NULL, NULL, NULL, NULL, concat('Interoperation Customer Product', @last_product_id),'Demo Interoperation Product', -- 6
  NULL, b'0', b'0', 1.000000, 1.000000,
  1.000000, 3, 1.000000, 0,
@@ -24,7 +24,7 @@ SELECT id INTO @product_id FROM m_product_loan WHERE name = concat('Interoperati
 
 -- charge, mapping
 INSERT INTO `m_charge` VALUES (
-  NULL, concat('Loan Withdraw Fee_', @product_id), 'TZS', 1, 2,
+  NULL, concat('Loan Withdraw Fee_', @product_id), 'USD', 1, 2,
         1, 0, 1.000000, NULL, NULL,
         NULL, 0, 1, 0, NULL,
   NULL, NULL, NULL, NULL);
@@ -142,7 +142,7 @@ INSERT INTO `acc_product_mapping` VALUES (
   
 -- TENANT 4 ######################
 
-USE `tn04`;
+USE `ibank-india`;
 
 -- loan product
 SET @last_product_id = 1;

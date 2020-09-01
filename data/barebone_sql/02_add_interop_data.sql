@@ -1,10 +1,10 @@
 -- STEP 1 add interop data
-USE `tn03`;
+USE `ibank`;
 
 SET @last_saving_prod_id = -1;
 SELECT COALESCE(max(id), 1) into @last_saving_prod_id from m_savings_product;
 
-SET @saving_prod_name = concat('Saving Product', @last_saving_prod_id);
+SET @saving_prod_name = concat('Basic Wallet', @last_saving_prod_id);
 
 INSERT INTO `m_savings_product`
 (`name`, `short_name`, `description`, `deposit_type_enum`, `currency_code`, `currency_digits`,
@@ -13,7 +13,7 @@ INSERT INTO `m_savings_product`
  `min_required_opening_balance`, `accounting_type`, `withdrawal_fee_amount`, `withdrawal_fee_type_enum`,
  `withdrawal_fee_for_transfer`, `allow_overdraft`, `min_required_balance`, `enforce_min_required_balance`,
  `min_balance_for_interest_calculation`, `withhold_tax`, `tax_group_id`, `is_dormancy_tracking_active`)
-VALUES (@saving_prod_name, concat('SP', @last_saving_prod_id), 'Saving Product', 100, 'TZS', 2, NULL, 0.000000, 1,
+VALUES (@saving_prod_name, concat('Basic Wallet', @last_saving_prod_id), 'Basic Wallet', 100, 'TZS', 2, NULL, 0.000000, 1,
                            4, 1, 360, NULL, 2, NULL, NULL, 0, 0, 0.000000, 1, NULL, 0, NULL, 0);
 
 SET @saving_prod_id = -1;
@@ -53,12 +53,12 @@ INSERT INTO `m_charge`
  `income_or_liability_account_id`,`tax_group_id`)
 VALUES (@charge_name, 'TZS', 2, 5, 1, NULL, 1.000000, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, @fee_gl_id, NULL);
 
--- STEP 2 add tn03
+-- STEP 2 add ibank
 
 SET @client_name = 'InteropCustomer';
 SET @saving_account_no = '9062b90de19b43989005';
 SET @saving_account_ext_id = '9062b90de19b43989005d9';
-SET @IBAN = 'IC11in02tn03' + @saving_account_ext_id;
+SET @IBAN = 'IC11in02ibank' + @saving_account_ext_id;
 SET @MSISDN = '27710203999';
 
 INSERT INTO `m_client` (`account_no`, `external_id`, `status_enum`, `sub_status`, `activation_date`, `office_joining_date`,
@@ -76,7 +76,7 @@ VALUES (@saving_account_no, NULL, 300, NULL, ADDDATE(curdate(), -100), NULL, 1, 
 SET @last_saving_prod_id = -1;
 SELECT COALESCE(max(id), 1) into @last_saving_prod_id from m_savings_product;
 
-SET @saving_prod_name = concat('Saving Product', @last_saving_prod_id);
+SET @saving_prod_name = concat('Basic Wallet', @last_saving_prod_id);
 SET @saving_prod_id = -1;
 SELECT id INTO @saving_prod_id FROM m_savings_product WHERE name = @saving_prod_name;
 
@@ -112,7 +112,7 @@ INSERT INTO `m_savings_account_charge` (`savings_account_id`, `charge_id`, `is_p
 VALUES (@saving_acc_id, (SELECT id FROM m_charge WHERE name = @charge_name), 0, 5, 1, 1.000000, 0.000000, 0, 0, 1);
 
 -- STEP 3 add interop data
-USE `tn04`;
+USE `ibank-india`;
 
 SET @last_saving_prod_id = -1;
 SELECT COALESCE(max(id), 1) into @last_saving_prod_id from m_savings_product;
@@ -166,12 +166,12 @@ INSERT INTO `m_charge`
  `income_or_liability_account_id`,`tax_group_id`)
 VALUES (@charge_name, 'TZS', 2, 5, 1, NULL, 1.000000, NULL, NULL, NULL, 0, 0, 0, NULL, NULL, NULL, @fee_gl_id, NULL);
 
--- STEP 3 add tn04
+-- STEP 3 add ibank-india
 
 SET @client_name = 'InteropMerchant';
 SET @saving_account_no = 'a6b6c10b2aaa4778ac2f';
 SET @saving_account_ext_id = 'a6b6c10b2aaa4778ac2fc9';
-SET @IBAN = 'IC11in02tn04' + @saving_account_ext_id;
+SET @IBAN = 'IC11in02ibank-india' + @saving_account_ext_id;
 SET @MSISDN = '27710204999';
 
 INSERT INTO `m_client` (`account_no`, `external_id`, `status_enum`, `sub_status`, `activation_date`, `office_joining_date`,
